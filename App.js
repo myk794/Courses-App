@@ -1,14 +1,28 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
-
+import { StyleSheet, Text, View, Button, Image } from 'react-native';
+import { useState } from 'react';
+import AddPanel from './components/AddPanel';
 export default function App() {
+  const [panelIsVisible, setpanelIsVisible] = useState(false);
+  const openAddPanel = () => {
+    setpanelIsVisible(true);
+  }
+  const closeAddPanel = () => {
+    setpanelIsVisible(false);
+  }
+  const addCourse = (courseTitle) => {
+    console.log(courseTitle);
+    closeAddPanel();
+  }
   return (
     <>
     <StatusBar style="light" />
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <Button title="Kurs Ekle" color="red" />
+      <Button title="Kurs Ekle" color="red" onPress={openAddPanel}/>
+      <AddPanel visible = {panelIsVisible} OnAddCourse={addCourse} onCancel={closeAddPanel}/>
+       
     </View>
+    
     </>
   );
 }
@@ -17,7 +31,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: 50,
+    paddingHorizontal: 20
   },
 });
