@@ -6,6 +6,7 @@ export default function AddPanel({ visible,OnAddCourse,onCancel }) {
     const [enteredText, setenteredText] = useState('')
     const addCourseHandler = () => {
         OnAddCourse(enteredText);
+        setenteredText('');
     };
 
     return (
